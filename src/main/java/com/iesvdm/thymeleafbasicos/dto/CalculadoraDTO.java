@@ -1,4 +1,4 @@
-package com.iesvdm.thymeleafbasicos.model;
+package com.iesvdm.thymeleafbasicos.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SaludoDTO {
+public class CalculadoraDTO {
     //DTO = Data Transfer Object, subcategoria de Beans o POJOs
         //para recibir y enviar datos a la vista (capa view)
 
-    private String nombre;
-    private String idioma;
+    private double nota1;
+    private double nota2;
+    private double nota3;
 
 }

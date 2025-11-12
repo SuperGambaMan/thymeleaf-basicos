@@ -9,12 +9,12 @@
 <form method="post" th:object="${saludoDTO}" th:action="@{/saludos}" > <!--th:field"*{nombre}"-->
     <div>
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required />
+        <input type="text" id="nombre" th:field="*{idioma}" placeholder="Escribe tu nombre" required />
     </div>
 
     <div>
         <label for="idioma">Idioma:</label>
-        <select id="idioma" name="idioma" required>
+        <select id="idioma" th:field="*{idioma}" required>
             <option value="" disabled selected>Selecciona idioma</option>
             <option value="es">Español</option>
             <option value="pr">Portugues</option>
@@ -28,7 +28,7 @@
 </form>
 
 <div th:if="saludo">
-    <span th:text="${saludo}"
+    <span th:text="${saludo}"></span>
 </div>
 
 </body>
