@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejercicio 1</title>
+    <title>Ejercicio 2</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <form method="post" th:object="${saludoDTO}" th:action="@{/saludos}" > <!--th:field"*{nombre}"-->
     <div>
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" th:field="*{idioma}" placeholder="Escribe tu nombre" required />
+        <input type="text" id="nombre" th:field="*{nombre}" placeholder="Escribe tu nombre" required />
     </div>
 
     <div>
@@ -27,7 +28,7 @@
     </div>
 </form>
 
-<div th:if="saludo">
+<div th:if="saludo" class="mensaje">
     <span th:text="${saludo}"></span>
 </div>
 

@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejercicio 2</title>
+    <title>Ejercicio 5</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<form method="post" th:object="${conversorDTO}" th:action="@{/conversor}" > <!--th:field"*{nombre}"-->
+<form method="post" th:object="${ecuacionDTO}" th:action="@{/ecuacion}" > <!--th:field"*{nombre}"-->
     <div>
-        <label for="nombre">Dolares:</label>
-        <input type="text" id="nombre" th:field="*{dolares}" required />
+        <label for="a">Valor A:</label>
+        <input type="text" id="a" th:field="*{a}" required />
+    </div>
+    <div>
+        <label for="b">Valor B:</label>
+        <input type="text" id="b" th:field="*{b}" required />
+    </div>
+    <div>
+        <label for="c">Valor C:</label>
+        <input type="text" id="c" th:field="*{c}" required />
     </div>
     <div>
         <button type="submit">Enviar</button>
     </div>
 </form>
 
-<div th:if="resultado">
-    <span th:text="${#numbers.formatCurrency(resultado)}"></span>
+<div th:if="resultado" class="mensaje">
+    <span th:text="${'X = '+#numbers.formatDecimal(resultado,1,2)}"></span>
 </div>
 
 </body>

@@ -23,11 +23,9 @@ public class EcuacionController {
 
         log.info(ecuacionDTO.toString());
 
-        double valorDolar=0.86;
+        double res = -ecuacionDTO.getB();
 
-        model.addAttribute("resultado",
-                (ecuacionDTO.getDolares()*valorDolar)
-                );
+        model.addAttribute("resultado","");
         return "ecuacion";
     }
 }

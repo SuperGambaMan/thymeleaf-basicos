@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejercicio 2</title>
+    <title>Ejercicio 3</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <form method="post" th:object="${calculadoraDTO}" th:action="@{/calculadora}" > <!--th:field"*{nombre}"-->
@@ -24,7 +25,7 @@
     </div>
 </form>
 
-<div th:if="resultado">
+<div th:if="resultado" class="mensaje">
     <span th:text="${'Media: '+#numbers.formatDecimal(resultado,1,2)}"></span>
 </div>
 

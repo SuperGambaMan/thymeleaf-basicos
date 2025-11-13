@@ -23,11 +23,12 @@ public class CalculadoraController {
 
         log.info(calculadoraDTO.toString());
 
-        model.addAttribute("resultado",
-                ((calculadoraDTO.getNota1()
-                        + calculadoraDTO.getNota2()
-                        + calculadoraDTO.getNota3())/3)
-                );
+        double res = ((calculadoraDTO.getNota1()
+                    + calculadoraDTO.getNota2()
+                    + calculadoraDTO.getNota3())/3);
+
+        model.addAttribute("resultado",res);
+
         return "calculadora";
     }
 }

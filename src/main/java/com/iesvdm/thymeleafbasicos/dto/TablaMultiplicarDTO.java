@@ -10,12 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EcuacionDTO {
+public class TablaMultiplicarDTO {
     //DTO = Data Transfer Object, subcategoria de Beans o POJOs
         //para recibir y enviar datos a la vista (capa view)
 
-    private double a;
-    private double b;
-    private double c;
+    private int numero;
 
 }

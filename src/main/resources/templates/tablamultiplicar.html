@@ -7,10 +7,10 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<form method="post" th:object="${conversorDTO}" th:action="@{/conversor}" > <!--th:field"*{nombre}"-->
+<form method="post" th:object="${tablaMultiplicarDTO}" th:action="@{/tablamultiplicar}" > <!--th:field"*{nombre}"-->
     <div>
-        <label for="nombre">Dolares:</label>
-        <input type="text" id="nombre" th:field="*{dolares}" required />
+        <label for="numero">Tabla del :</label>
+        <input type="text" id="numero" th:field="*{numero}" required />
     </div>
     <div>
         <button type="submit">Enviar</button>
@@ -18,7 +18,7 @@
 </form>
 
 <div th:if="resultado" class="mensaje">
-    <span th:text="${#numbers.formatCurrency(resultado)}"></span>
+    <span th:utext="${resultado}"></span>
 </div>
 
 </body>
