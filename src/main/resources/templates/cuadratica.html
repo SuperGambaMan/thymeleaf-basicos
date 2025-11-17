@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejercicio 5</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form method="post" th:object="${cuadraticaDTO}" th:action="@{/cuadratica/formulario/enviar}" > <!--th:field"*{nombre}"-->
+    <div>
+        <label for="a">A:</label>
+        <input type="number" step="any" id="a" th:field="*{a}" required />
+    </div>
+    <div>
+        <label for="b">B:</label>
+        <input type="number" step="any" id="b" th:field="*{b}" required />
+    </div>
+    <div>
+        <label for="c">C:</label>
+        <input type="number" step="any" id="c" th:field="*{c}" required />
+    </div>
+    <div>
+        <button type="submit">Enviar</button>
+    </div>
+</form>
+
+<div th:if="msg" class="mensaje">
+    <span th:text="${msg}"></span> <br>
+    <th:block th:if="${raiz1 != null and raiz2 != null}">
+        <br>
+        <span>Raiz1 </span><input th:value="${raiz1}" readonly>
+        <br>
+        <span>Raiz2 </span><input th:value="${raiz2}" readonly>
+        <br>
+    </th:block>
+</div>
+
+</body>
+</html>

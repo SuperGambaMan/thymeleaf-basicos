@@ -39,6 +39,11 @@ public class TablaMultplicarController {
                 "<tr/>"+
                 "</table>";
 
+        String res2="<table border="+1+">";
+        for (int i = 1; i <= 10; i++) {
+            res += "<td> Tabla del"+tablaMultiplicarDTO.getNumero();
+        }
+
         model.addAttribute("resultado",res);
 
         return "tablamultiplicar";

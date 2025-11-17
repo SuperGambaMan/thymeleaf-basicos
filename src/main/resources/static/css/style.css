@@ -8,7 +8,7 @@
 
 /* Fondo general */
 body {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    background: linear-gradient(135deg, #ffaf98, #fc7a7a);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ label {
 }
 
 /* Campos de texto y select */
-input[type="text"],
+input,
 select {
     width: 100%;
     padding: 10px 12px;
@@ -51,17 +51,35 @@ select {
 }
 
 /* Efecto al enfocar */
-input[type="text"]:focus,
+input:focus,
 select:focus {
-    border-color: #2196f3;
-    box-shadow: 0 0 4px rgba(33, 150, 243, 0.5);
+    border-color: #f32121;
+    box-shadow: 0 0 4px rgba(243, 33, 33, 0.5);
     outline: none;
 }
+
+/*input[type="number"],*/
+/*select {*/
+/*    width: 100%;*/
+/*    padding: 10px 12px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 8px;*/
+/*    font-size: 15px;*/
+/*    transition: border-color 0.3s ease, box-shadow 0.3s ease;*/
+/*}*/
+
+/*!* Efecto al enfocar *!*/
+/*input[type="number"]:focus,*/
+/*select:focus {*/
+/*    border-color: #f32121;*/
+/*    box-shadow: 0 0 4px rgba(243, 33, 33, 0.5);*/
+/*    outline: none;*/
+/*}*/
 
 /* Botón */
 button {
     width: 100%;
-    background-color: #2196f3;
+    background-color: #f32121;
     color: white;
     border: none;
     padding: 12px;
@@ -73,7 +91,7 @@ button {
 }
 
 button:hover {
-    background-color: #1976d2;
+    background-color: #d21919;
 }
 
 button:active {
@@ -82,7 +100,7 @@ button:active {
 
 /* Mensaje de saludo debajo del formulario */
 .mensaje {
-    background-color: #e8f5e9;
+    background-color: #eef5e8;
     color: #2e7d32;
     padding: 12px 20px;
     border-radius: 8px;
