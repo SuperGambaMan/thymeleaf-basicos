@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejercicio 3</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form method="post" th:object="${ajedrezDTO}" th:action="@{/ajedrez}" > <!--th:field"*{nombre}"-->
+
+    <div>
+        <label for="caballo">Mostrar Caballo como: </label>
+        <input type="number" step="any" id="caballo" th:field="*{caballo}" required />
+    </div>
+
+    <div>
+        <label for="alfil">Mostrar Alfil como: </label>
+        <input type="number" step="any" id="alfil" th:field="*{caballo}" required />
+    </div>
+
+    <div th:each>
+        <button type="submit">Enviar</button>
+    </div>
+
+</form>
+
+<div th:if="resultado" class="mensaje">
+    <span th:text="${'Media: '+#numbers.formatDecimal(resultado,1,2)}"></span>
+</div>
+
+</body>
+</html>
