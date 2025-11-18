@@ -20,13 +20,14 @@
 
 <table th:if="${caballoCol}" class="chessboard">
     <tr>
+        <!-- Columnas coordenadas  -->
         <th></th>
         <th th:each="c : ${cols}" th:text="${c}"></th>
     </tr>
-
+    <!-- Fila coordenadas  -->
     <tr th:each="r : ${rows}">
         <th th:text="${r}"></th>
-
+        <!-- Columnas  -->
         <td th:each="c : ${cols}"
             th:class="${(r + c) % 2 == 0} ? 'white' : 'black'">
 
