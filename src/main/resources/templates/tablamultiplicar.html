@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejercicio 4</title>
+    <title>Ejercicio 6</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <form method="post" th:object="${tablaMultiplicarDTO}" th:action="@{/tablamultiplicar}" > <!--th:field"*{nombre}"-->
+    <h1>Tablas de multiplicar</h1>
+    <br>
     <div>
         <label for="numero">Tabla del :</label>
         <input type="text" id="numero" th:field="*{numero}" required />
@@ -17,8 +19,18 @@
     </div>
 </form>
 
-<div th:if="resultado" class="mensaje">
-    <span th:utext="${resultado}"></span>
+<div th:if="${resultados}" class="mensaje">
+
+    <table border="1">
+        <tr>
+            <th>Tabla del <span th:text="${numero}"></span></th>
+        </tr>
+
+        <tr th:each="fila : ${resultados}">
+            <td th:text="${fila}"></td>
+        </tr>
+    </table>
+
 </div>
 
 </body>

@@ -31,6 +31,32 @@ form div {
     margin-bottom: 20px;
 }
 
+h1 {
+    text-align: center;
+    font-size: 2.2rem;        /* Tamaño moderno */
+    font-weight: 700;         /* Negrita elegante */
+    color: #333;              /* Gris oscuro moderno */
+    margin-top: 20px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;      /* Espaciado suave */
+}
+
+/* Efecto de subrayado animado (opcional) */
+h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #f32121;      /* Rojo */
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
+h1:hover::after {
+    width: 120px;             /* Animación al pasar el ratón */
+}
+
 /* Etiquetas */
 label {
     display: block;
@@ -112,6 +138,205 @@ button:active {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* --- TABLA --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+table th {
+    background-color: #f32121;
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+/* Filas alternas */
+table tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* Hover fila */
+table tr:hover td {
+    background-color: #ffe5e5;
+}
+/* ===== CONTENEDOR GENERAL ===== */
+.calendar-container {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 95%;
+    max-width: 420px;
+    margin: 40px auto;
+}
+
+/* ===== TÍTULO ===== */
+.calendar-container h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #d21919;
+}
+
+/* ===== ENLACE (volver, etc.) ===== */
+.calendar-container a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    background: #f32121;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: background 0.3s ease, transform 0.1s;
+}
+
+.calendar-container a:hover {
+    background: #d21919;
+}
+
+.calendar-container a:active {
+    transform: scale(0.97);
+}
+
+/* ===== CALENDARIO ===== */
+.calendar-table {
+    margin: 20px auto 0;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 360px;
+    font-size: 14px;
+}
+
+.calendar-table th {
+    background: #f32121;
+    color: white;
+    padding: 8px;
+    border-radius: 6px 6px 0 0;
+}
+
+.calendar-table td,
+.calendar-table th {
+    border: 1px solid #eee;
+    padding: 8px;
+    text-align: center;
+}
+
+.calendar-table td {
+    background: #fff;
+}
+
+.calendar-table td.empty {
+    background: #f8f8f8;
+}
+
+
+/* Contenedor de la imagen */
+.image-box {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Imagen del interior del coche */
+.image-box img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* === AJEDREZ: TABLERO === */
+.chessboard {
+    border-collapse: collapse;
+    margin: 20px auto;
+    table-layout: fixed;   /* 🔥 evita que se ajusten las columnas */
+    width: 400px;
+    height: 400px;
+}
+
+/* === AJEDREZ: CABECERAS (th) === */
+.chessboard th {
+    width: 50px;
+    height: 50px;
+    background-color: #222;   /* color similar al .label */
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    font-size: 18px;          /* puedes subir o bajar esto */
+    padding: 0;
+    border-radius: 0px;
+}
+
+.chessboard td {
+    width: 50px;          /* 🔥 tamaño fijo */
+    height: 50px;         /* 🔥 tamaño fijo */
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;     /* evita que el contenido "desborde" */
+    font-size: 28px;      /* tamaño del icono */
+    padding: 0;           /* 🔥 elimina márgenes que expanden celdas */
+}
+
+/* Colores de casillas */
+.chessboard .white {
+    background-color: #eee;
+}
+
+.chessboard .black {
+    background-color: #444;
+    color: white;
+}
+
+/* Cabecera de filas/columnas */
+.chessboard .label {
+    background-color: #222;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+/* === HELADERA == */
+
+.flex {
+    display: flex;
+}
+
+.recipiente {
+    color: black;
+    height: 200px;
+    width: 100%;
+    border-bottom: solid red;
+    border-right: solid red;
+    border-left: solid red;
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+.chocolate{
+    background-color: #673217;
+
+}
+.fresa{
+    background-color: #fa83dc;
+}
+.vainilla{
+    background-color: #e8c857;
+}
+
 /* Adaptación para móviles */
 @media (max-width: 480px) {
     form {
@@ -120,5 +345,11 @@ button:active {
 
     button {
         font-size: 14px;
+    }
+    .calendar-container {
+        padding: 20px;
+    }
+    .calendar-table {
+        font-size: 12px;
     }
 }

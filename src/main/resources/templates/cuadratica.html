@@ -8,16 +8,18 @@
 </head>
 <body>
 <form method="post" th:object="${cuadraticaDTO}" th:action="@{/cuadratica/formulario/enviar}" > <!--th:field"*{nombre}"-->
+    <h1>aX<sup>2</sup> + bX + c = 0</h1>
+    <br>
     <div>
-        <label for="a">A:</label>
+        <label for="a">a:</label>
         <input type="number" step="any" id="a" th:field="*{a}" required />
     </div>
     <div>
-        <label for="b">B:</label>
+        <label for="b">b:</label>
         <input type="number" step="any" id="b" th:field="*{b}" required />
     </div>
     <div>
-        <label for="c">C:</label>
+        <label for="c">c:</label>
         <input type="number" step="any" id="c" th:field="*{c}" required />
     </div>
     <div>
@@ -25,7 +27,7 @@
     </div>
 </form>
 
-<div th:if="msg" class="mensaje">
+<div th:if="${msg}" class="mensaje">
     <span th:text="${msg}"></span> <br>
     <th:block th:if="${raiz1 != null and raiz2 != null}">
         <br>

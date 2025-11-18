@@ -1,7 +1,10 @@
 package com.iesvdm.thymeleafbasicos.dto;
 
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +22,9 @@ public class CalendarRequestDTO {
 
     @NotEmpty
     private String mes;
-    @NotEmpty
+    //int no se puede validar con NotEmpty
+    // con @Min nos aseguramos que el año tiene que ser mayor que 0
+    @Min(value = 0)
     private int anio;
 
 }

@@ -8,6 +8,8 @@
 </head>
 <body>
 <form method="post" th:object="${conversorDTO}" th:action="@{/conversor}" > <!--th:field"*{nombre}"-->
+    <h1>CONVERSOR $ A €</h1>
+    <br>
     <div>
         <label for="nombre">Dolares:</label>
         <input type="text" id="nombre" th:field="*{dolares}" required />
@@ -17,7 +19,7 @@
     </div>
 </form>
 
-<div th:if="resultado" class="mensaje">
+<div th:if="${resultado}" class="mensaje">
     <span th:text="${#numbers.formatCurrency(resultado)}"></span>
 </div>
 

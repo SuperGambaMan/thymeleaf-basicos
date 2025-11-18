@@ -1,0 +1,36 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|Calendario de ${mes} ${anio}|"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="calendar-container">
+<h1 th:text="|Calendario de ${mes} de ${anio}|"></h1>
+
+<table class="calendar-table">
+    <thead>
+    <tr>
+        <th>Lun</th>
+        <th>Mar</th>
+        <th>Mié</th>
+        <th>Jue</th>
+        <th>Vie</th>
+        <th>Sáb</th>
+        <th>Dom</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="semana : ${semanas}">
+        <td th:each="dia : ${semana}" th:text="${dia}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/calendar">Volver</a>
+</div>
+</body>
+</html>

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @Controller
 public class TablaMultplicarController {
@@ -23,28 +26,34 @@ public class TablaMultplicarController {
 
         log.info(tablaMultiplicarDTO.toString());
 
-        String res = "<table border="+1+">" +
-                "<tr>" +
-                "<td>" +tablaMultiplicarDTO.getNumero()+"</td>" +
-                "<td>" +(0)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero())+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*2)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*3)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*4)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*5)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*6)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*7)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*8)+"</td>" +
-                "<td>" +(tablaMultiplicarDTO.getNumero()*9)+"</td>" +
-                "<tr/>"+
-                "</table>";
-
-        String res2="<table border="+1+">";
+        List<String> resultados = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
-            res += "<td> Tabla del"+tablaMultiplicarDTO.getNumero();
+            resultados.add(tablaMultiplicarDTO.getNumero() + " x " + i + " = " + (tablaMultiplicarDTO.getNumero() * i));
         }
+//
+//        String res = "<table border="+1+">" +
+//                "<tr>" +
+//                "<td>" +tablaMultiplicarDTO.getNumero()+"</td>" +
+//                "<td>" +(0)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero())+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*2)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*3)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*4)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*5)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*6)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*7)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*8)+"</td>" +
+//                "<td>" +(tablaMultiplicarDTO.getNumero()*9)+"</td>" +
+//                "<tr/>"+
+//                "</table>";
+//
+//        String res2="<table border="+1+">";
+//        for (int i = 1; i <= 10; i++) {
+//            res += "<td> Tabla del"+tablaMultiplicarDTO.getNumero();
+//        }
 
-        model.addAttribute("resultado",res);
+        model.addAttribute("resultados",resultados);
+        model.addAttribute("numero", tablaMultiplicarDTO.getNumero());
 
         return "tablamultiplicar";
     }

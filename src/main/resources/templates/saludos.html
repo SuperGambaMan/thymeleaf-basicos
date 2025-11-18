@@ -8,6 +8,8 @@
 </head>
 <body>
 <form method="post" th:object="${saludoDTO}" th:action="@{/saludos}" > <!--th:field"*{nombre}"-->
+    <h1>SALUDOS EN DIFERENTES IDIOMAS</h1>
+    <br>
     <div>
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" th:field="*{nombre}" placeholder="Escribe tu nombre" required />
@@ -28,7 +30,7 @@
     </div>
 </form>
 
-<div th:if="saludo" class="mensaje">
+<div th:if="${saludo}" class="mensaje">
     <span th:text="${saludo}"></span>
 </div>
 

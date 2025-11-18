@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Random;
 import java.util.stream.IntStream;
 
 
@@ -21,7 +22,7 @@ public class AjedrezController {
 
     //ruta /ajedrez -> vacio coge la del @RequestMapping
     @GetMapping("")
-    public String recibirConfiguradorDTO (Model model, @ModelAttribute AjedrezDTO ajedrezDTO){
+    public String recibirAjedrezDTO (Model model, @ModelAttribute AjedrezDTO ajedrezDTO){
 
         int[] rows = IntStream.rangeClosed(1,8).toArray();
         int[] cols = IntStream.rangeClosed(1,8).toArray();
@@ -33,16 +34,37 @@ public class AjedrezController {
         return "ajedrez";
     }
 
-    //ruta
-    @PostMapping("/ajedrez/enviar")
-    public String calendarioMes(Model model, @Valid @ModelAttribute AjedrezDTO ajedrezDTO){
+    //ruta /ajedrez/tablero
+    @PostMapping("/tablero")
+    public String tableroConFichas(Model model, @Valid @ModelAttribute AjedrezDTO ajedrezDTO){
 
         log.info(ajedrezDTO.toString());
 
-        /// ///
+        Random random = new Random();
 
-        model.addAttribute("msg", "");
+        int caballoFila, caballoCol;
+        int alfilFila, alfilCol;
 
-        return "show-month";
+        // Posiciones aleatorias
+        caballoFila = random.nextInt(8) + 1;
+        caballoCol  = random.nextInt(8) + 1;
+
+        do {
+            alfilFila = random.nextInt(8) + 1;
+            alfilCol  = random.nextInt(8) + 1;
+        } while (caballoFila == alfilFila && caballoCol == alfilCol);
+
+        model.addAttribute("caballoFila", caballoFila);
+        model.addAttribute("caballoCol", caballoCol);
+        model.addAttribute("alfilFila", alfilFila);
+        model.addAttribute("alfilCol", alfilCol);
+
+        int[] rows = IntStream.rangeClosed(1, 8).toArray();
+        int[] cols = IntStream.rangeClosed(1, 8).toArray();
+
+        model.addAttribute("rows", rows);
+        model.addAttribute("cols", cols);
+
+        return "ajedrez";
     }
 }

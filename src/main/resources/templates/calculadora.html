@@ -7,7 +7,10 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
 <form method="post" th:object="${calculadoraDTO}" th:action="@{/calculadora}" > <!--th:field"*{nombre}"-->
+    <h1>CALCULADORA DE MEDIAS</h1>
+    <br>
     <div>
         <label for="nota1">Nota 1:</label>
         <input type="text" id="nota1" th:field="*{nota1}" required />
@@ -25,7 +28,7 @@
     </div>
 </form>
 
-<div th:if="resultado" class="mensaje">
+<div th:if="${resultado}" class="mensaje">
     <span th:text="${'Media: '+#numbers.formatDecimal(resultado,1,2)}"></span>
 </div>
 

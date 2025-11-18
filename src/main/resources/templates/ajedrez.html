@@ -3,31 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejercicio 3</title>
+    <title>Ejercicio 9</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<form method="post" th:object="${ajedrezDTO}" th:action="@{/ajedrez}" > <!--th:field"*{nombre}"-->
+<form method="post" th:object="${ajedrezDTO}" th:action="@{/ajedrez/tablero}" > <!--th:field"*{nombre}"-->
+
+    <h1>GENERAR TABLERO CON CABALLO ♞ Y ALFIL ♝</h1>
+    <br>
 
     <div>
-        <label for="caballo">Mostrar Caballo como: </label>
-        <input type="number" step="any" id="caballo" th:field="*{caballo}" required />
-    </div>
-
-    <div>
-        <label for="alfil">Mostrar Alfil como: </label>
-        <input type="number" step="any" id="alfil" th:field="*{caballo}" required />
-    </div>
-
-    <div th:each>
-        <button type="submit">Enviar</button>
+        <button type="submit">Generar Tablero</button>
     </div>
 
 </form>
 
-<div th:if="resultado" class="mensaje">
-    <span th:text="${'Media: '+#numbers.formatDecimal(resultado,1,2)}"></span>
-</div>
+<table th:if="${caballoCol}" class="chessboard">
+    <tr>
+        <th></th>
+        <th th:each="c : ${cols}" th:text="${c}"></th>
+    </tr>
+
+    <tr th:each="r : ${rows}">
+        <th th:text="${r}"></th>
+
+        <td th:each="c : ${cols}"
+            th:class="${(r + c) % 2 == 0} ? 'white' : 'black'">
+
+            <!-- Caballo -->
+            <span th:if="${r == caballoFila and c == caballoCol}"
+                  style="font-size: 30px;">♞</span>
+
+            <!-- Alfil -->
+            <span th:if="${r == alfilFila and c == alfilCol}"
+                  style="font-size: 30px;">♝</span>
+
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>

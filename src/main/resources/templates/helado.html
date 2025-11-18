@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ejercicio 5</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<form method="post" th:object="${heladoDTO}" th:action="@{/helado/enviar}"> <!--th:field"*{nombre}"-->
+    <h1>MÁQUINA DE HELADOS</h1>
+    <br>
+    <p>Seleccione los porcentajes para preparar un helado a su gusto</p>
+    <div class="flex">
+        <div class="image-box">
+            <img src="/img/chocolate.jpg" alt="chocolate">
+            <label for="chocolate">Chocolate:</label>
+            <input type="number" step="any" id="chocolate" th:field="*{chocolate}" required />%
+        </div>
+        <div class="image-box">
+            <img src="/img/fresa.jpeg" alt="fresa">
+            <label for="fresa">Fresa:</label>
+            <input type="number" step="any" id="fresa" th:field="*{fresa}" required />%
+        </div>
+        <div class="image-box">
+            <img src="/img/vainilla.jpg" alt="vainilla">
+            <label for="vainilla">Vainilla:</label>
+            <input type="number" step="any" id="vainilla" th:field="*{vainilla}" required />%
+        </div>
+    </div>
+
+    <div>
+        <button type="submit">Enviar</button>
+    </div>
+</form>
+
+<div  class="mensaje">
+
+    <div th:if="${check}" class="recipiente">
+        <div class="chocolate" th:if="${chocolate}"
+             th:style="${'height:' + (chocolate*2) + 'px'}"
+             th:text="${'Chocolate ' + chocolate + '%'}"></div>
+        <div class="fresa" th:if="${fresa}"
+             th:style="${'height:' + (fresa*2) + 'px'}"
+             th:text="${'Fresa ' + fresa + '%'}"></div>
+        <div class="vainilla" th:if="${vainilla}"
+             th:style="${'height:' + (vainilla*2) + 'px'}"
+             th:text="${'Vainilla ' + vainilla + '%'}"></div>
+    </div>
+
+    <span  th:if="msg" th:text="${msg}"></span>
+
+</div>
+
+</body>
+</html>

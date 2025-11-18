@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 
-@RequestMapping("/configurador")
+@RequestMapping("/configuradorCoche")
 public class ConfiguradorCocheController {
 
     //ruta /configurador -> vacio coge la del @RequestMapping
@@ -22,20 +22,28 @@ public class ConfiguradorCocheController {
     public String recibirConfiguradorDTO (Model model, @ModelAttribute ConfiguradorDTO configuradorDTO){
 
 
-        model.addAttribute("configuradorDTO", configuradorDTO);
-        return "configurador";
+        model.addAttribute("configuradorDTO",  configuradorDTO);
+        return "configuradorCoche";
     }
 
-    //ruta
-    @PostMapping("/configurador/enviar")
-    public String calendarioMes(Model model, @Valid @ModelAttribute ConfiguradorDTO configuradorDTO){
+    //ruta /configurador/enviar
+    @PostMapping("/enviar")
+    public String enviarConfiguracion(Model model, @ModelAttribute ConfiguradorDTO configuradorDTO){
 
         log.info(configuradorDTO.toString());
 
-        /// ///
+        // obtenemos el color y la moldura del html
+        String color = configuradorDTO.getColorTapiceria();
+        String moldura = configuradorDTO.getMoldura();
 
-        model.addAttribute("msg", "");
+        //escrbimos la ruta de la imagen para enviarsela al html y colocarla en el src
+        String imagen = "/img/interior_" + color + "_" + moldura + ".png";
 
-        return "show-month";
+        model.addAttribute("imagenCoche", imagen);
+        model.addAttribute("colorTapiceria", color);
+        model.addAttribute("molduraTapiceria", moldura);
+        model.addAttribute("configuradorDTO", configuradorDTO);
+
+        return "configuradorCoche";
     }
 }

@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ import java.util.Locale;
 @RequestMapping("/calendar")
 public class CalendarController {
 
-    //ruta /cuadratica -> vacio coge la del @RequestMapping
+    //ruta /calendar -> vacio coge la del @RequestMapping
     @GetMapping("")
     public String getCalendarForm (Model model, @ModelAttribute CalendarRequestDTO calendarRequestDTO, Locale locale){
 
@@ -44,16 +45,63 @@ public class CalendarController {
         return "calendar";
     }
 
-    //ruta
-    @PostMapping("/calendar/enviar")
-    public String calendarioMes(Model model, @Valid @ModelAttribute CalendarRequestDTO calendarRequestDTO){
+    //ruta /calendar/mes
+    @PostMapping("/mes")
+    public String calendarioMes(Model model, @Valid @ModelAttribute CalendarRequestDTO calendarRequestDTO, Locale locale){
 
         log.info(calendarRequestDTO.toString());
 
-        String mes = calendarRequestDTO.getMes();
+        // obtenemos el mes y el año del formulario
+        int mesNumero = Integer.parseInt(calendarRequestDTO.getMes()) - 1;  // Enero = 0
         int anio = calendarRequestDTO.getAnio();
 
-        model.addAttribute("msg", "");
+        //creamos un calendario y le asignamos el primer dia del mes y el año que hemos recibido
+        Calendar cal = Calendar.getInstance(locale);
+        cal.set(anio, mesNumero, 1);
+
+        // Los dias de la semana empiezan en domingo con .DAY_OF_WEEK
+        int diaSemanaInicio = cal.get(Calendar.DAY_OF_WEEK);
+        int diasMes = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        // Ajustar para que el lunes sea el primer día (ChatGPT)
+        int offset = (diaSemanaInicio == Calendar.SUNDAY) ? 6 : diaSemanaInicio - 2;
+
+        //creamos una lista de todas las semanas del mes lista de dias
+        // dentro de listas de semanas (Una matriz)
+        List<List<String>> semanas = new ArrayList<>();
+        //y creamos otra lista para definir la semana actual
+        List<String> semanaActual = new ArrayList<>();
+
+        // Rellenar huecos antes del día 1 para que no se desordene la tabla
+        for (int i = 0; i < offset; i++) {
+            semanaActual.add("");
+        }
+
+        // despues rellenamos los días del mes
+        for (int dia = 1; dia <= diasMes; dia++) {
+            semanaActual.add(String.valueOf(dia));
+            //cuando semana actual llega a 7 dias se guarda en la matriz
+            // y empieza la siguiente semana nueva
+            if (semanaActual.size() == 7) {
+                semanas.add(new ArrayList<>(semanaActual));
+                semanaActual.clear();
+            }
+        }
+
+        // y por ultimo añadimos la última semana si faltan dias
+        if (!semanaActual.isEmpty()) {
+            while (semanaActual.size() < 7) {
+                semanaActual.add("");
+            }
+            semanas.add(semanaActual);
+        }
+
+        // obtenemos el mes en texto para usarlo en el html
+        String nombreMes = cal.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, locale);
+
+        model.addAttribute("mes", nombreMes);
+        model.addAttribute("anio", anio);
+        model.addAttribute("semanas", semanas);
 
         return "show-month";
     }

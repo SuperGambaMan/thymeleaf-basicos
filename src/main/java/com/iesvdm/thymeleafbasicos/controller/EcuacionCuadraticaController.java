@@ -23,12 +23,13 @@ public class EcuacionCuadraticaController {
     @GetMapping("/formulario")
     public String ecuacion (Model model, @ModelAttribute CuadraticaDTO cuadraticaDTO){
         model.addAttribute("cuadraticaDTO", cuadraticaDTO);
+        model.addAttribute("cuadraticaDTO", new CuadraticaDTO());
         return "cuadratica";
     }
 
     //ruta /cuadratica/formulario/enviar
     @PostMapping("/formulario/enviar")
-    public String formularioEnviar(Model model, @Valid @ModelAttribute CuadraticaDTO cuadraticaDTO){
+    public String formularioEnviar(Model model, @Valid @ModelAttribute("cuadraticaDTO") CuadraticaDTO cuadraticaDTO){
 
         log.info(cuadraticaDTO.toString());
 
@@ -50,14 +51,14 @@ public class EcuacionCuadraticaController {
             //cuadraticaDTO.setRaiz2(raiz2);
 
 
-            model.addAttribute("msg", "Ec .con soluciones");
+            model.addAttribute("msg", "Ecuación con soluciones");
 
             model.addAttribute("raiz1", raiz1);
             model.addAttribute("raiz2", raiz2);
 
         } else {
 
-            model.addAttribute("msg", "Ec. sin solución");
+            model.addAttribute("msg", "Ecuación sin solución");
 
         }
 

@@ -1,14 +1,15 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ejercicio 3</title>
+    <title>Ejercicio 8</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<form method="post" th:object="${configuradorDTO}" th:action="@{/configurador}" > <!--th:field"*{nombre}"-->
-
+<form method="post" th:object="${configuradorDTO}" th:action="@{/configuradorCoche/enviar}" > <!--th:field"*{nombre}"-->
+    <h1>CONFIGURADOR DE COCHES</h1>
+    <br>
     <div>
         <label for="color-tapiceria">Color Tapicería</label>
         <select id="color-tapiceria" th:field="*{colorTapiceria}">
@@ -27,17 +28,14 @@
     </div>
 
     <div>
-        <img src="">
-    </div>
-
-    <div>
         <button type="submit">Enviar</button>
     </div>
 
 </form>
 
-<div th:if="resultado" class="mensaje">
-    <span th:text="${'Media: '+#numbers.formatDecimal(resultado,1,2)}"></span>
+<div th:if="${molduraTapiceria}" class="image-box mensaje">
+    <span th:text="${'Interior color ' + colorTapiceria +' con moldura ' + molduraTapiceria}"></span>
+    <img th:if="${imagenCoche}" th:src="@{${imagenCoche}}" alt="Interior coche" style="max-width:100%; margin-top:20px;">
 </div>
 
 </body>
